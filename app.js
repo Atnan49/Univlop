@@ -5,10 +5,13 @@
 
 
 // Vite only bundles assets it can see statically; map 'assets/x.ext' strings in data to built URLs.
-const ASSET_URLS = Object.fromEntries(
-  Object.entries(import.meta.glob('./assets/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }))
-    .map(([path, url]) => [path.slice(2), url])
-);
+// Fallback safely if running outside Vite (e.g. plain static server or browser preview).
+const ASSET_URLS = (typeof import.meta !== 'undefined' && typeof import.meta.glob === 'function')
+  ? Object.fromEntries(
+      Object.entries(import.meta.glob('./assets/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }))
+        .map(([path, url]) => [path.slice(2), url])
+    )
+  : {};
 const assetUrl = (path) => ASSET_URLS[path] || path;
 
 // --- 1. Master Product Database (Ekosistem Kos Mahasiswa UMS Solo) ---
