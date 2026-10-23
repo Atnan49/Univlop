@@ -3,13 +3,17 @@
 
 // Vite only bundles assets it can see statically; map 'assets/x.ext' strings in data to built URLs.
 // Fallback safely if running outside Vite (e.g. plain static server or browser preview).
-const ASSET_URLS = (typeof import.meta !== 'undefined' && typeof import.meta.glob === 'function')
-  ? Object.fromEntries(
-      Object.entries(import.meta.glob('./assets/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }))
-        .map(([path, url]) => [path.slice(2), url])
-    )
-  : {};
+let ASSET_URLS = {};
+try {
+  const globModules = import.meta.glob('./assets/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
+  ASSET_URLS = Object.fromEntries(
+    Object.entries(globModules).map(([path, url]) => [path.replace(/^\.\//, ''), url])
+  );
+} catch (e) {
+  // Fallback for non-Vite static servers
+}
 const assetUrl = (path) => ASSET_URLS[path] || path;
+
 
 // --- 1. Master Product Database (Ekosistem Kos Mahasiswa UMS Solo) ---
 const PRODUCTS = [
@@ -655,7 +659,7 @@ function confirmFigmaOrder() {
     totalPrice = 85000;
   }
 
-  let firstItemImage = 'assets/camera-sony.png';
+  let firstItemImage = assetUrl('assets/camera-sony.png');
   let firstItemProductId = 'camera-sony';
   if (CART.length > 0 && CART[0].product) {
     if (CART[0].product.image) firstItemImage = CART[0].product.image;
@@ -1071,9 +1075,16 @@ const ACCOUNTS = {
 };
 
 let currentRole = 'buyer';
-let CURRENT_USER = ACCOUNTS.buyer;
+ACCOUNTS.buyer.avatar = assetUrl(ACCOUNTS.buyer.avatar);
+ACCOUNTS.seller.avatar = assetUrl(ACCOUNTS.seller.avatar);
+ACCOUNTS.admin.avatar = assetUrl(ACCOUNTS.admin.avatar);
 ACCOUNTS.buyer.listings.forEach(l => { l.image = assetUrl(l.image); });
 ACCOUNTS.seller.listings.forEach(l => { l.image = assetUrl(l.image); });
+ACCOUNTS.buyer.orders.forEach(o => { o.image = assetUrl(o.image); });
+ACCOUNTS.seller.orders.forEach(o => { o.image = assetUrl(o.image); });
+
+
+let CURRENT_USER = ACCOUNTS.buyer;
 
 // Backward compatibility references
 const USER_PROFILE = CURRENT_USER;
@@ -1088,7 +1099,7 @@ let ORDERS = [
     status: 'Booked COD',
     meetingPoint: 'Plaza Danau Siti Walidah UMS (Hari Ini 16.30 WIB)',
     note: 'Deal Tawar Harga dari Rp 850.000 · Bayar di Tempat',
-    image: 'assets/camera-sony.png',
+    image: assetUrl('assets/camera-sony.png'),
     productId: 'camera-sony'
   },
   {
@@ -1100,10 +1111,11 @@ let ORDERS = [
     status: 'Selesai',
     meetingPoint: 'Pelataran Edutorium KH Ahmad Dahlan UMS',
     note: 'Transaksi COD Selesai (Lunas di Tempat)',
-    image: 'assets/meja-samping.png',
+    image: assetUrl('assets/meja-samping.png'),
     productId: 'meja-samping'
   }
 ];
+ORDERS.forEach(o => { o.image = assetUrl(o.image); });
 
 let PENDING_VERIFICATIONS = [
   {
@@ -1933,13 +1945,13 @@ function renderProfileOrders() {
     if (!imgSrc) {
       const lower = (order.productName || '').toLowerCase();
       if (lower.includes('meja') || lower.includes('kursi') || lower.includes('lemari')) {
-        imgSrc = 'assets/meja-samping.png';
+        imgSrc = assetUrl('assets/meja-samping.png');
       } else if (lower.includes('rice') || lower.includes('cooker')) {
-        imgSrc = 'assets/banner-product-1.png';
+        imgSrc = assetUrl('assets/banner-product-1.png');
       } else if (lower.includes('kipas')) {
-        imgSrc = 'assets/banner-product-2.png';
+        imgSrc = assetUrl('assets/banner-product-2.png');
       } else {
-        imgSrc = 'assets/camera-sony.png';
+        imgSrc = assetUrl('assets/camera-sony.png');
       }
     }
     const safeImg = assetUrl(imgSrc);
