@@ -49,9 +49,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ==========================================================================
-   UNIVLOP Web Application Container (Clean, Fluid & Dynamic)
-   ========================================================================== */
+/* Accessible keyboard focus ring (antislop-human R-32, R-34) */
+:focus-visible {
+  outline: 2px solid var(--color-maroon, #8E1B26);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-maroon, #8E1B26);
+  outline-offset: 2px;
+}
+
 .univlop-web-app {
   width: 100%;
   max-width: 100%;
@@ -1240,7 +1252,7 @@ body {
 
 .seller-active-figma {
   font-size: 11px;
-  color: #777777;
+  color: #57534E;
   margin-top: 2px;
 }
 
@@ -1268,7 +1280,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
   margin-top: 2px;
 }
 
@@ -2450,7 +2462,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
   overflow: hidden;
   position: relative;
   transition: all 0.2s ease;
@@ -3041,7 +3053,7 @@ body {
 
 .offer-section-helper {
   font-size: 11px;
-  color: #777777;
+  color: #57534E;
 }
 
 .offer-quick-grid {
@@ -3667,7 +3679,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -3882,7 +3894,7 @@ body {
   flex: 1;
   background: var(--color-stone-bone);
   border: 1px solid var(--color-hairline);
-  color: #777777;
+  color: #57534E;
   font-size: 9.5px;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -4085,7 +4097,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
   background: var(--color-stone-bone);
   padding: 2px 7px;
   border: 1px solid var(--color-hairline);
@@ -4120,7 +4132,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
 }
 
 .order-spec-header svg {
@@ -4886,7 +4898,7 @@ body {
 
 .loc-sub {
   font-size: 10.5px;
-  color: #777777;
+  color: #57534E;
 }
 
 .como-loc-action {
@@ -4996,7 +5008,7 @@ body {
 
 .cat-tile-sub {
   font-size: 11px;
-  color: #777777;
+  color: #57534E;
 }
 
 /* 7. Lookbook Product Grid ("The Archive Collection") */
@@ -5115,7 +5127,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
 }
 
 .como-card-title {
@@ -5426,7 +5438,7 @@ body {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #777777;
+  color: #57534E;
   margin-top: 4px;
   text-transform: uppercase;
 }
@@ -6264,7 +6276,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
   cursor: pointer;
   text-align: center;
   transition: all 0.15s ease;
@@ -6362,7 +6374,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #777777;
+  color: #57534E;
   display: block;
   margin-bottom: 6px;
 }
@@ -6525,7 +6537,7 @@ body {
 
 .btn-admin-reject {
   background: transparent;
-  color: #777777;
+  color: #57534E;
   border: 1px solid #CCCCCC;
   font-size: 11px;
   font-weight: 600;
@@ -6561,7 +6573,7 @@ body {
 
 .admin-spot-sub {
   font-size: 10.5px;
-  color: #777777;
+  color: #57534E;
 }
 
 .admin-spot-pill {

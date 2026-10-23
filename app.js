@@ -1,7 +1,4 @@
-/* ==========================================================================
-   UNIVLOP - Preloved Marketplace Mahasiswa Kos (SIFORIA 2026 UI/UX)
-   Master Application Script: State, Routing, Cart, and Interactivity
-   ========================================================================== */
+// Univlop - Preloved Marketplace Mahasiswa Kos (SIFORIA 2026 UI/UX)
 
 
 // Vite only bundles assets it can see statically; map 'assets/x.ext' strings in data to built URLs.
@@ -319,7 +316,7 @@ function renderCatalogProducts(filterType = 'all', searchKeyword = '') {
         <span class="figma-card-price">${formatRupiah(p.price)}</span>
         ${p.originalPrice ? `<span style="font-size: 11px; color: #999999; text-decoration: line-through; font-weight: 600;">${formatRupiah(p.originalPrice)}</span>` : ''}
       </div>
-      <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #777777; padding: 4px 14px 0; display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #57534E; padding: 4px 14px 0; display: flex; justify-content: space-between; align-items: center;">
         <span>${p.seller || 'Mahasiswa UMS'}</span>
         <span style="color: #C98A00; font-weight: 800; display: inline-flex; align-items: center; gap: 3px;">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="#C98A00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -474,7 +471,7 @@ function renderCart() {
           <div>
             <div class="cart-card-title-figma">${item.product.title}</div>
             <div class="cart-card-price-figma">${formatRupiah(item.product.price)}</div>
-            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #777777; margin-top: 3px;">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #57534E; margin-top: 3px;">
               ${item.product.seller || 'Mahasiswa UMS'} • ${item.product.codSpot || 'Danau Siti Walidah UMS'}
             </div>
           </div>
