@@ -790,16 +790,16 @@
     </section>
 
     <!-- Halaman Lapak Penjual dari Sisi User (Public Seller Storefront) -->
-    <section class="app-screen" id="screen-seller-store">
-      <!-- Top Bar -->
-      <div class="figma-top-bar" style="background: var(--color-white); border-bottom: 1px solid var(--color-hairline);">
-        <button class="detail-back-btn" onclick="navigateToScreen('screen-detail')" aria-label="Kembali ke Detail Produk">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-        </button>
-        <div style="font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">
-          Lapak Mahasiswa Penjual
+    <section class="app-screen" id="screen-seller-store" style="padding-bottom: 0;">
+      <!-- Top Bar: Back + UNIVLOP + Menu -->
+      <div class="detail-top-nav-figma">
+        <div class="detail-nav-left">
+          <button class="menu-burger-btn" onclick="navigateToScreen('screen-detail')" aria-label="Kembali ke Detail Produk">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <span class="figma-brand-word" style="font-size: 20px;">UNIVLOP</span>
         </div>
         <button class="menu-burger-btn" onclick="openMenuModal()" aria-label="Buka Menu">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5">
@@ -810,16 +810,22 @@
         </button>
       </div>
 
+      <!-- Subheader Pill: "Lapak Mahasiswa Penjual" -->
+      <div class="figma-subheader-pill" style="justify-content: space-between; padding: 0 16px;">
+        <span>Lapak Mahasiswa Penjual</span>
+        <span style="font-size: 10px; opacity: 0.85; letter-spacing: 0.05em;">COD KAMPUS UMS</span>
+      </div>
+
       <!-- Seller Storefront Container -->
       <div class="seller-store-container">
-        <!-- Seller Profile Banner -->
+        <!-- Seller Profile Banner Card -->
         <div class="seller-store-card">
           <div class="seller-store-profile-top">
             <div class="seller-store-avatar" id="sellerStoreAvatar">BA</div>
             <div class="seller-store-info">
               <div class="seller-store-badges-row">
-                <span class="seller-store-badge-verified">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="ktm-verified-pill">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                   Terverifikasi KTM UMS
                 </span>
                 <span class="seller-store-badge-cluster" id="sellerStoreCluster">Pabelan</span>
@@ -829,38 +835,41 @@
             </div>
           </div>
 
-          <!-- Seller Reputation & Stats Grid -->
+          <!-- Seller Reputation & Stats Grid (Como 1907 Editorial Strip) -->
           <div class="seller-store-stats-grid">
             <div class="store-stat-box">
               <div class="store-stat-num" id="sellerStoreRating">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="#C98A00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#C98A00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 <span>4.9</span>
               </div>
               <div class="store-stat-lbl">Reputasi COD</div>
             </div>
+            <div class="stat-v-line"></div>
             <div class="store-stat-box">
               <div class="store-stat-num" id="sellerStoreActiveCount">3</div>
               <div class="store-stat-lbl">Lapak Aktif</div>
             </div>
+            <div class="stat-v-line"></div>
             <div class="store-stat-box">
               <div class="store-stat-num" id="sellerStoreSuccessCount">14</div>
               <div class="store-stat-lbl">COD Sukses</div>
             </div>
+            <div class="stat-v-line"></div>
             <div class="store-stat-box">
-              <div class="store-stat-num" style="color: var(--color-maroon);" id="sellerStoreTrustScore">96%</div>
+              <div class="store-stat-num trust-score-highlight" id="sellerStoreTrustScore">96%</div>
               <div class="store-stat-lbl">Skor Kepercayaan</div>
             </div>
           </div>
 
-          <!-- Meeting Point Info -->
+          <!-- Meeting Point Info (Official Campus Safe Zone Callout) -->
           <div class="seller-store-meeting-box">
             <div class="store-meeting-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div class="store-meeting-text">
               <div class="store-meeting-title">Titik Temu COD Favorit Penjual</div>
               <div class="store-meeting-name" id="sellerStoreMeetingPoint">Gerbang Utama Kampus 1 UMS / Danau Siti Walidah</div>
-              <div class="store-meeting-desc">Zona Resmi Kampus: Terbuka, Dekat Pos Satpam & Ramai Mahasiswa</div>
+              <div class="store-meeting-desc">Zona Resmi Kampus UMS · Terbuka, Dekat Pos Satpam & Ramai Mahasiswa</div>
             </div>
           </div>
 
@@ -868,10 +877,10 @@
           <div class="seller-store-action-row">
             <button class="btn-store-chat-seller" onclick="openChatModal()">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              Chat & Ajak COD Penjual
+              Ajak Janjian COD dengan Penjual
             </button>
             <button class="btn-store-share-seller" onclick="showToast('Tautan lapak penjual berhasil disalin!')" aria-label="Bagikan Lapak">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
             </button>
           </div>
         </div>

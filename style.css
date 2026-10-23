@@ -7295,153 +7295,162 @@ textarea:focus-visible {
    LAPAK PENJUAL DARI SISI USER (PUBLIC SELLER STOREFRONT)
    ========================================================================== */
 .seller-store-container {
-  max-width: 1100px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 20px 16px 90px;
+  padding: 24px 20px 90px;
 }
 
 .seller-store-card {
   background: #FFFFFF;
   border: 1px solid var(--color-hairline);
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  border-radius: 0;
+  padding: 28px 24px;
+  margin-bottom: 28px;
+  box-shadow: none;
 }
 
 .seller-store-profile-top {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .seller-store-avatar {
   width: 58px;
   height: 58px;
-  border-radius: 50%;
-  background: var(--color-maroon, #8E1B26);
-  color: #FFFFFF;
+  border-radius: 0;
+  background: var(--color-obsidian);
+  color: var(--color-stone-bone);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading);
+  font-family: var(--font-serif);
   font-weight: 800;
   font-size: 20px;
   letter-spacing: 0.05em;
   flex-shrink: 0;
-  border: 2px solid var(--color-cream);
+  border: 1px solid var(--color-hairline-dark);
+  border-left: 3px solid var(--color-heritage-burgundy);
 }
 
 .seller-store-info {
   flex: 1;
+  min-width: 0;
 }
 
 .seller-store-badges-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   flex-wrap: wrap;
-}
-
-.seller-store-badge-verified {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(46, 125, 50, 0.1);
-  color: #2E7D32;
-  font-size: 9.5px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 3px 8px;
 }
 
 .seller-store-badge-cluster {
   background: var(--color-stone-bone);
   color: #57534E;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 3px 8px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 0;
 }
 
 .seller-store-title {
-  font-family: var(--font-heading);
-  font-size: 19px;
+  font-family: var(--font-serif);
+  font-size: 21px;
   font-weight: 800;
-  color: var(--color-dark);
-  line-height: 1.25;
+  color: var(--color-obsidian);
+  line-height: 1.2;
 }
 
 .seller-store-sub {
   font-size: 11.5px;
   color: #57534E;
-  margin-top: 3px;
+  margin-top: 4px;
   font-weight: 500;
 }
 
+/* Stats Row: Sleek architectural strip with hairline dividers */
 .seller-store-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   background: var(--color-stone-bone);
-  padding: 16px 12px;
-  margin-bottom: 18px;
   border: 1px solid var(--color-hairline);
+  border-radius: 0;
+  padding: 16px 12px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
+.seller-store-stats-grid .store-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
 .store-stat-box .store-stat-num {
-  font-family: var(--font-heading);
-  font-size: 16px;
+  font-family: var(--font-serif);
+  font-size: 17px;
   font-weight: 800;
-  color: var(--color-dark);
+  color: var(--color-obsidian);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
+  line-height: 1.1;
+}
+
+.store-stat-box .store-stat-num.trust-score-highlight {
+  color: var(--color-heritage-burgundy, #550E15);
 }
 
 .store-stat-box .store-stat-lbl {
   font-size: 9.5px;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #57534E;
   margin-top: 4px;
 }
 
+/* COD Meeting Point: Clean official security callout, no dashed border */
 .seller-store-meeting-box {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  background: #FFFDF9;
-  border: 1px dashed var(--color-gold, #C98A00);
-  padding: 14px 16px;
-  margin-bottom: 20px;
+  gap: 14px;
+  background: var(--color-stone-bone);
+  border: 1px solid var(--color-hairline);
+  border-left: 3px solid var(--color-heritage-burgundy, #550E15);
+  border-radius: 0;
+  padding: 16px 18px;
+  margin-bottom: 22px;
 }
 
 .store-meeting-icon {
-  color: var(--color-maroon);
+  color: var(--color-heritage-burgundy, #550E15);
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 .store-meeting-title {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-maroon);
+  letter-spacing: 0.1em;
+  color: var(--color-heritage-burgundy, #550E15);
 }
 
 .store-meeting-name {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 800;
-  color: var(--color-dark);
-  margin: 2px 0;
+  color: var(--color-obsidian);
+  margin: 3px 0 2px;
 }
 
 .store-meeting-desc {
@@ -7449,30 +7458,36 @@ textarea:focus-visible {
   color: #57534E;
 }
 
+/* Action Row */
 .seller-store-action-row {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .btn-store-chat-seller {
   flex: 1;
-  background: var(--color-maroon, #8E1B26);
+  height: 44px;
+  background: var(--color-obsidian);
   color: #FFFFFF;
-  border: none;
-  padding: 12px 18px;
+  border: 1px solid var(--color-obsidian);
+  border-radius: 0;
+  padding: 0 20px;
   font-family: var(--font-body);
-  font-size: 12.5px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .btn-store-chat-seller:hover {
-  background: var(--color-maroon-dark, #72161E);
+  background: var(--color-heritage-burgundy, #550E15);
+  border-color: var(--color-heritage-burgundy, #550E15);
 }
 
 .btn-store-share-seller {
@@ -7480,54 +7495,84 @@ textarea:focus-visible {
   height: 44px;
   background: #FFFFFF;
   border: 1px solid var(--color-hairline);
-  color: var(--color-dark);
+  border-radius: 0;
+  color: var(--color-obsidian);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.btn-store-share-seller:hover {
+  background: var(--color-stone-bone);
+  border-color: var(--color-obsidian);
 }
 
 .seller-store-catalog-section {
-  margin-top: 28px;
+  margin-top: 32px;
 }
 
 .seller-store-catalog-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 16px;
-  padding-bottom: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--color-hairline);
 }
 
 .seller-store-section-title {
-  font-family: var(--font-heading);
-  font-size: 17px;
+  font-family: var(--font-serif);
+  font-size: 18px;
   font-weight: 800;
-  color: var(--color-dark);
+  color: var(--color-obsidian);
+  letter-spacing: 0.02em;
 }
 
 .seller-store-section-sub {
   font-size: 11.5px;
   color: #57534E;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .seller-store-count-pill {
-  font-size: 10.5px;
+  font-size: 9.5px;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-maroon);
-  background: var(--color-maroon-light);
-  padding: 4px 10px;
+  color: var(--color-obsidian);
+  background: var(--color-stone-bone);
+  border: 1px solid var(--color-hairline);
+  border-radius: 0;
+  padding: 5px 12px;
 }
 
 @media (max-width: 600px) {
+  .seller-store-container {
+    padding: 16px 14px 80px;
+  }
+
+  .seller-store-card {
+    padding: 18px 14px;
+  }
+
   .seller-store-stats-grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+    padding: 14px 10px;
+  }
+
+  .seller-store-stats-grid .stat-v-line {
+    display: none;
+  }
+
+  .btn-store-chat-seller {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 0 12px;
   }
 }
 
