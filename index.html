@@ -18,6 +18,50 @@
 
 <body>
 
+  <!-- Univlop Mascot Loading Screen (from Loading Animation.html) -->
+  <div class="univlop-loading-overlay" id="univlopLoadingOverlay" aria-label="Memuat Univlop">
+    <div class="loading-stage">
+      <div class="loading-shadow"></div>
+      <svg viewBox="95 30 320 375" role="img" aria-label="Memuat">
+        <g class="all">
+          <!-- tas belanja -->
+          <path class="w draw" pathLength="100" stroke-width="10" d="M124 148H380L398 366Q400 388 378 388H128Q106 388 108 366Z"/>
+          <!-- tabung panah daur ulang -->
+          <mask id="rvm" maskUnits="userSpaceOnUse" x="90" y="30" width="330" height="375">
+            <path class="rv" pathLength="100" fill="none" stroke="#fff" stroke-width="70" stroke-linecap="round" stroke-linejoin="round" d="M167 243V290A83 83 0 0 0 333 290V145A83 83 0 0 0 167 145V168"/>
+          </mask>
+          <g mask="url(#rvm)">
+            <path class="w" stroke-width="40" d="M167 243V290A83 83 0 0 0 333 290V145A83 83 0 0 0 167 145V168"/>
+            <path class="b" stroke-width="20" d="M167 243V290A83 83 0 0 0 333 290V145A83 83 0 0 0 167 145V168"/>
+          </g>
+          <!-- aliran energi di dalam tabung -->
+          <path class="w run" pathLength="100" stroke-width="12" d="M167 243V290A83 83 0 0 0 333 290V145A83 83 0 0 0 167 145V168"/>
+          <!-- kepala panah -->
+          <g class="head">
+            <polygon fill="var(--color-maroon, #8E1B26)" points="141,163 205,163 173,211"/>
+            <path class="w" stroke-width="10" d="M152 163H141L173 211L205 163H182"/>
+          </g>
+          <!-- wajah mascot uniplop -->
+          <g class="face">
+            <g class="wob">
+              <rect x="190" y="180" width="120" height="170" rx="60" fill="#fff"/>
+              <g transform="translate(-3 0)">
+                <g class="feat">
+                  <circle class="eye" cx="227" cy="252" r="9.5"/>
+                  <path class="wink" d="M267 259Q278 242 290 257"/>
+                  <path class="mouth" d="M236 282Q252 298 268 282"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="loading-caption-brand">UNIVLOP</div>
+    <div class="loading-caption-dots">MEMUAT<span>.</span><span>.</span><span>.</span></div>
+    <div class="loading-caption-sub">Sirkularitas Preloved Mahasiswa Kos UMS</div>
+  </div>
+
   <!-- Skeleton loading overlay -->
   <div class="univlop-skeleton-overlay" id="univlopSkeletonPage" aria-hidden="true">
     <!-- Announcement Skeleton -->
@@ -142,9 +186,14 @@
     <!-- ====================================================================
          COMO 1907 MINIMALIST ANNOUNCEMENT TICKER (NO EMOJIS)
          ==================================================================== -->
-    <div class="como-announcement-bar">
-      <div class="como-announcement-inner">
-        <span>ARCHIVIO CIRCOLARE • PLATFORM PRELOVED & OPER BARANG KOS MAHASISWA UMS SOLO • TANPA TOMBOL BELI INSTAN: TAWAR OVER, CHAT, CEK FISIK & BAYAR COD DI KAMPUS UMS</span>
+    <div class="como-announcement-bar" aria-label="Pengumuman Univlop">
+      <div class="como-announcement-track">
+        <div class="como-announcement-inner">
+          <span>ARCHIVIO CIRCOLARE • PLATFORM PRELOVED & OPER BARANG KOS MAHASISWA UMS SOLO • TANPA TOMBOL BELI INSTAN: TAWAR OVER, CHAT, CEK FISIK & BAYAR COD DI KAMPUS UMS •&nbsp;</span>
+        </div>
+        <div class="como-announcement-inner" aria-hidden="true">
+          <span>ARCHIVIO CIRCOLARE • PLATFORM PRELOVED & OPER BARANG KOS MAHASISWA UMS SOLO • TANPA TOMBOL BELI INSTAN: TAWAR OVER, CHAT, CEK FISIK & BAYAR COD DI KAMPUS UMS •&nbsp;</span>
+        </div>
       </div>
     </div>
 
@@ -221,7 +270,6 @@
             <p class="como-hero-editorial-desc">Jual-beli, tawar over, dan oper perlengkapan kos khusus mahasiswa UMS Solo. Tanpa tombol beli instan: negosiasi langsung via chat dan bayar saat cek fisik COD di area kampus.</p>
             <div class="como-hero-action-row">
               <button class="btn-como-outline" onclick="event.stopPropagation(); navigateToScreen('screen-catalog')">JELAJAHI BARANG KOS</button>
-              <button class="btn-como-ghost" onclick="event.stopPropagation(); openLocationModal()">AREA KOS KAMPUS UMS</button>
             </div>
           </div>
         </div>
@@ -667,7 +715,7 @@
 
         <!-- Seller Profile Card (Shenina Tsabita UMS) -->
         <div class="seller-box-figma">
-          <div class="seller-profile-row">
+          <div class="seller-profile-row" onclick="openSellerStorefront()" style="cursor: pointer;" title="Buka Lapak Penjual">
             <div class="seller-ellipse-maroon" id="detailSellerInitials">ST</div>
             <div>
               <div class="seller-name-figma" id="detailSellerName">Shenina Tsabita</div>
@@ -695,7 +743,7 @@
             </div>
           </div>
 
-          <button class="btn-see-seller-figma" onclick="showToast('Menampilkan seluruh barang kos milik penjual ini')">
+          <button class="btn-see-seller-figma" onclick="openSellerStorefront()">
             Lihat semua barang kos penjual
           </button>
         </div>
@@ -739,6 +787,111 @@
         </button>
       </div>
 
+    </section>
+
+    <!-- Halaman Lapak Penjual dari Sisi User (Public Seller Storefront) -->
+    <section class="app-screen" id="screen-seller-store">
+      <!-- Top Bar -->
+      <div class="figma-top-bar" style="background: var(--color-white); border-bottom: 1px solid var(--color-hairline);">
+        <button class="detail-back-btn" onclick="navigateToScreen('screen-detail')" aria-label="Kembali ke Detail Produk">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <div style="font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">
+          Lapak Mahasiswa Penjual
+        </div>
+        <button class="menu-burger-btn" onclick="openMenuModal()" aria-label="Buka Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Seller Storefront Container -->
+      <div class="seller-store-container">
+        <!-- Seller Profile Banner -->
+        <div class="seller-store-card">
+          <div class="seller-store-profile-top">
+            <div class="seller-store-avatar" id="sellerStoreAvatar">BA</div>
+            <div class="seller-store-info">
+              <div class="seller-store-badges-row">
+                <span class="seller-store-badge-verified">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Terverifikasi KTM UMS
+                </span>
+                <span class="seller-store-badge-cluster" id="sellerStoreCluster">Pabelan</span>
+              </div>
+              <h2 class="seller-store-title" id="sellerStoreName">Bagus (Kos Pabelan UMS)</h2>
+              <p class="seller-store-sub" id="sellerStoreSubtitle">Mahasiswa UMS · Aktif 15 menit lalu</p>
+            </div>
+          </div>
+
+          <!-- Seller Reputation & Stats Grid -->
+          <div class="seller-store-stats-grid">
+            <div class="store-stat-box">
+              <div class="store-stat-num" id="sellerStoreRating">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#C98A00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>4.9</span>
+              </div>
+              <div class="store-stat-lbl">Reputasi COD</div>
+            </div>
+            <div class="store-stat-box">
+              <div class="store-stat-num" id="sellerStoreActiveCount">3</div>
+              <div class="store-stat-lbl">Lapak Aktif</div>
+            </div>
+            <div class="store-stat-box">
+              <div class="store-stat-num" id="sellerStoreSuccessCount">14</div>
+              <div class="store-stat-lbl">COD Sukses</div>
+            </div>
+            <div class="store-stat-box">
+              <div class="store-stat-num" style="color: var(--color-maroon);" id="sellerStoreTrustScore">96%</div>
+              <div class="store-stat-lbl">Skor Kepercayaan</div>
+            </div>
+          </div>
+
+          <!-- Meeting Point Info -->
+          <div class="seller-store-meeting-box">
+            <div class="store-meeting-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="store-meeting-text">
+              <div class="store-meeting-title">Titik Temu COD Favorit Penjual</div>
+              <div class="store-meeting-name" id="sellerStoreMeetingPoint">Gerbang Utama Kampus 1 UMS / Danau Siti Walidah</div>
+              <div class="store-meeting-desc">Zona Resmi Kampus: Terbuka, Dekat Pos Satpam & Ramai Mahasiswa</div>
+            </div>
+          </div>
+
+          <!-- Storefront Actions -->
+          <div class="seller-store-action-row">
+            <button class="btn-store-chat-seller" onclick="openChatModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Chat & Ajak COD Penjual
+            </button>
+            <button class="btn-store-share-seller" onclick="showToast('Tautan lapak penjual berhasil disalin!')" aria-label="Bagikan Lapak">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Section: Daftar Barang Kos Dijual Penjual Ini -->
+        <div class="seller-store-catalog-section">
+          <div class="seller-store-catalog-header">
+            <div>
+              <h3 class="seller-store-section-title">Etalase Barang Kos Penjual</h3>
+              <p class="seller-store-section-sub">Semua barang preloved siap cek fisik COD di area kampus UMS</p>
+            </div>
+            <span class="seller-store-count-pill" id="sellerStoreListCount">3 Barang</span>
+          </div>
+
+          <!-- Product Grid for this seller -->
+          <div class="figma-catalog-grid" id="sellerStoreProductGrid" style="padding: 0;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ==================================================================
@@ -2115,7 +2268,7 @@
     <span id="toastMessage">Notifikasi berhasil!</span>
   </div>
 
-  <script type="module" src="./app.js?v=1.0.1"></script>
+  <script type="module" src="./app.js?v=1.0.2"></script>
 </body>
 
 </html>

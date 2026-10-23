@@ -363,6 +363,7 @@ function openProductDetail(productId) {
   if (!product) return;
 
   currentDetailProduct = product;
+  window.currentDetailProduct = product;
 
   const titleElem = document.getElementById('detailTitleFigma');
   const priceElem = document.getElementById('detailPriceFigma');
@@ -404,6 +405,88 @@ function addCurrentProductToCart() {
   if (currentDetailProduct) {
     addToCart(currentDetailProduct.id);
   }
+}
+
+// Lapak Penjual dari Sisi User (Public Seller Storefront)
+let currentViewingSeller = null;
+
+function openSellerStorefront(sellerName) {
+  if (!sellerName && currentDetailProduct) {
+    sellerName = currentDetailProduct.seller;
+  }
+  if (!sellerName) sellerName = 'Bagus (Kos Pabelan UMS)';
+
+  currentViewingSeller = sellerName;
+
+  const sellerProducts = PRODUCTS.filter(p => p.seller && (
+    p.seller.toLowerCase().includes(sellerName.toLowerCase()) || 
+    sellerName.toLowerCase().includes(p.seller.toLowerCase())
+  ));
+
+  let displayList = [...sellerProducts];
+  if (displayList.length < 3) {
+    const referenceProd = currentDetailProduct || PRODUCTS.find(p => p.seller === sellerName) || PRODUCTS[0];
+    const more = PRODUCTS.filter(p => !displayList.some(dp => dp.id === p.id) && (p.areaCluster === referenceProd.areaCluster || p.category === referenceProd.category));
+    displayList = [...displayList, ...more.slice(0, 3 - displayList.length)];
+  }
+
+  const avatarEl = document.getElementById('sellerStoreAvatar');
+  const nameEl = document.getElementById('sellerStoreName');
+  const subEl = document.getElementById('sellerStoreSubtitle');
+  const clusterEl = document.getElementById('sellerStoreCluster');
+  const ratingEl = document.getElementById('sellerStoreRating');
+  const activeCountEl = document.getElementById('sellerStoreActiveCount');
+  const successCountEl = document.getElementById('sellerStoreSuccessCount');
+  const trustScoreEl = document.getElementById('sellerStoreTrustScore');
+  const meetingPointEl = document.getElementById('sellerStoreMeetingPoint');
+  const countPillEl = document.getElementById('sellerStoreListCount');
+  const gridEl = document.getElementById('sellerStoreProductGrid');
+
+  const initials = sellerName.replace(/\(.*?\)/g, '').trim().split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'UM';
+
+  if (avatarEl) avatarEl.textContent = initials;
+  if (nameEl) nameEl.textContent = sellerName;
+  if (subEl) subEl.textContent = (currentDetailProduct && currentDetailProduct.sellerStatus) ? currentDetailProduct.sellerStatus : 'Mahasiswa UMS Terverifikasi KTM · Aktif';
+  
+  const referenceProd = currentDetailProduct || sellerProducts[0] || PRODUCTS[0];
+  if (clusterEl) clusterEl.textContent = (referenceProd.areaCluster || 'Pabelan').toUpperCase();
+  if (ratingEl) {
+    ratingEl.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="#C98A00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <span>${referenceProd.rating || '4.9'}</span>`;
+  }
+  if (activeCountEl) activeCountEl.textContent = displayList.length;
+  if (successCountEl) successCountEl.textContent = referenceProd.reviews || '14';
+  if (trustScoreEl) trustScoreEl.textContent = (referenceProd.sellerTrust || 96) + '%';
+  if (meetingPointEl) meetingPointEl.textContent = referenceProd.codSpot || 'Gerbang Utama Kampus 1 UMS / Danau Siti Walidah';
+  if (countPillEl) countPillEl.textContent = `${displayList.length} Barang Tersedia`;
+
+  if (gridEl) {
+    gridEl.innerHTML = displayList.map(p => {
+      const savingPercent = p.originalPrice ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0;
+      const distanceText = p.distance || '350m · Gonilan';
+      const isBooked = p.codStatus === 'Booked COD';
+      return `
+        <div class="figma-product-card" onclick="openProductDetail('${p.id}')">
+          <div class="figma-card-img-wrap" style="position: relative;">
+            <img src="${p.image}" alt="${p.title}" loading="lazy">
+            ${isBooked ? '<span style="position: absolute; top: 8px; right: 8px; background: #D97706; color: #FFF; font-size: 8.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 7px;">Dijanjikan COD</span>' : ''}
+            ${savingPercent > 0 ? `<span style="position: absolute; bottom: 8px; left: 8px; background: var(--color-heritage-burgundy); color: #FFF; font-size: 8.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 7px;">Hemat ${savingPercent}%</span>` : ''}
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(17,17,17,0.85); color: #FFF; font-size: 8.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 7px;">${distanceText}</span>
+          </div>
+          <div class="figma-card-title">${p.title}</div>
+          <div style="display: flex; align-items: baseline; gap: 8px; padding: 0 14px; margin-top: 2px;">
+            <span class="figma-card-price">${formatRupiah(p.price)}</span>
+            ${p.originalPrice ? `<span style="font-size: 11px; color: #78716C; text-decoration: line-through; font-weight: 600;">${formatRupiah(p.originalPrice)}</span>` : ''}
+          </div>
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #57534E; padding: 4px 14px 10px; display: flex; justify-content: space-between; align-items: center;">
+            <span>${p.condition || 'Bekas Bagus'}</span>
+            <span style="color: var(--color-maroon); font-weight: 800;">Lihat Detail &rarr;</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  navigateToScreen('screen-seller-store');
 }
 
 // --- 7. Daftar Incaran & Janjian COD Operations ---
@@ -1384,20 +1467,35 @@ function simulateGoogleLogin() {
 
 // --- 12. Initial App Setup ---
 function hideSkeletonPage() {
+  const loading = document.getElementById('univlopLoadingOverlay');
+  if (loading) {
+    loading.classList.add('loading-hidden');
+    setTimeout(() => {
+      loading.style.display = 'none';
+    }, 450);
+  }
   const sk = document.getElementById('univlopSkeletonPage');
-  if (!sk) return;
-  sk.classList.add('sk-hidden');
-  setTimeout(() => {
-    sk.style.display = 'none';
-  }, 360);
+  if (sk) {
+    sk.classList.add('sk-hidden');
+    setTimeout(() => {
+      sk.style.display = 'none';
+    }, 360);
+  }
 }
 
-function showSkeletonPage(duration = 900) {
+function showSkeletonPage(duration = 1000) {
+  const loading = document.getElementById('univlopLoadingOverlay');
+  if (loading) {
+    loading.style.display = 'flex';
+    loading.offsetHeight;
+    loading.classList.remove('loading-hidden');
+  }
   const sk = document.getElementById('univlopSkeletonPage');
-  if (!sk) return;
-  sk.style.display = 'block';
-  sk.offsetHeight;
-  sk.classList.remove('sk-hidden');
+  if (sk) {
+    sk.style.display = 'block';
+    sk.offsetHeight;
+    sk.classList.remove('sk-hidden');
+  }
   if (duration > 0) {
     setTimeout(() => {
       hideSkeletonPage();
@@ -1412,10 +1510,10 @@ function initApp() {
   switchUserRole('buyer', true);
   renderAdminDesk();
 
-  // Hide skeleton loading page smoothly after initial load
+  // Hide mascot loading screen smoothly after initial load
   setTimeout(() => {
     hideSkeletonPage();
-  }, 650);
+  }, 950);
 
   // Keyboard shortcut: ESC to exit chat fullscreen or close modals
   document.addEventListener('keydown', (e) => {
@@ -2271,6 +2369,7 @@ Object.assign(window, {
   showToast,
   showSkeletonPage,
   hideSkeletonPage,
+  openSellerStorefront,
   // Pillar 1, 2, 3, 4 Exports
   openSellModal,
   closeSellModal,
