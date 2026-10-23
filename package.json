@@ -1,0 +1,28 @@
+{
+  "name": "univlop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atnan49/Univlop.git"
+  },
+  "keywords": [],
+  "author": "Atnan49",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Atnan49/Univlop/issues"
+  },
+  "homepage": "https://github.com/Atnan49/Univlop#readme",
+  "description": "",
+  "devDependencies": {
+    "vite": "^8.3.4"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  }
+}
